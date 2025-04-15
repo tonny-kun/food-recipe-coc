@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MARAHUYO</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="background-image: url('bg-home1.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center;">
+    <div class="topnav">
+        <header>     
+            <div class="header-container">
+                <div class="logo-title">
+                    <img src="marahuyo_icon.png" alt="MARAHUYO Logo" class="logo">
+                    <h1 style="font-style:bold;">MARAHUYO</h1>
+                </div>
+                <nav>
+                    <a href="HOME.html" class="split"> HOME </a>
+                    <div class="dropdown">
+                        <a class="dropbtn">RECIPES</a>
+                        <div class="dropdown-content">
+                            <a href="BREAKFAST.html">Breakfast</a>
+                            <a href="LUNCH.html">Lunch</a>
+                            <a href="DINNER.html">Dinner</a>
+                            <a href="SIDEDISHES.html">Side Dishes</a>
+                            <a href="APPTIZERS.html">Apptizers</a>
+                            <a href="SNACK.html">Snack</a>
+                            <a href="DESSERT.html">Dessert</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <a class="dropbtn">ABOUT US</a>
+                        <div class="dropdown-content">
+                            <a href="WEBSITE.html">Website</a>
+                            <a href="DEVELOPERS.html">Developers</a>
+                        </div>
+                    </div>
+                    <a href="CONTACT US.html" class="split"> CONTACT US </a>
+                </nav>
+            </div>
+        </header>
+    </div>
+
+    <div class="main-layout">
+        <!-- LEFT: Category List -->
+        <div class="category-sidebar">
+            <h2>CATEGORY</h2>
+            <ul>
+                <li><a href="BREAKFAST.html">Breakfast</a></li>
+                <li><a href="LUNCH.html">Lunch</a></li>
+                <li><a href="DINNER.html">Dinner</a></li>
+                <li><a href="SIDEDISHES.html">Side Dishes</a></li>
+                <li><a href="APPTIZERS.html">Appetizers</a></li>
+                <li><a href="SNACK.html">Snacks</a></li>
+                <li><a href="DESSERT.html">Dessert</a></li>
+            </ul>
+        </div>
+    
+        <div class="slideshow-container">
+            <div class="slide fade">
+                <img src="pinakbet.jpg" alt="Food 1">
+                <div class="caption">Pancit</div>
+            </div>
+            <div class="slide fade">
+                <img src="ginisang-monggo-recipe.webp" alt="Food 2">
+                <div class="caption">Ginisang Monggo</div>
+            </div>
+            <div class="slide fade">
+                <img src="lumpia.jpg" alt="Food 2">
+                <div class="caption">Ginisang Monggo</div>
+            </div>
+            <div class="slide fade">
+                <img src="dinuguan.jpg" alt="Food 2">
+                <div class="caption">Ginisang Monggo</div>
+            </div>
+            <div class="slide fade">
+                <img src="kare-kare.jpeg" alt="Food 2">
+                <div class="caption">Ginisang Monggo</div>
+            </div>
+            <div class="slide fade">
+                <img src="balls2x.jpeg" alt="Food 2">
+                <div class="caption">Ginisang Monggo</div>
+            </div>
+
+            <a class="prev" onclick="plusSlides(-1, 'center')">&#10094;</a>
+            <a class="next" onclick="plusSlides(1, 'center')">&#10095;</a>
+        </div>
+        
+        <!-- RIGHT: Sponsor -->
+        <div class="category-sidebar1">
+            <div class="slide fade1">
+                <a href="https://new.gcash.com/"><img src="sponsors.jpeg" alt="Sponsor 1"></a>
+            </div>
+            <div class="slide fade1">
+                <a href=""><img src="ads1.jpg"></a>
+            </div>
+            <div class="slide fade1">
+                <a href=""><img src="ads2.jpg"></a>
+            </div>
+            <div class="slide fade1">
+                <a href=""><img src="ads3.jpg"></a>
+            </div>
+            <div class="slide fade1">
+                <a href=""><img src="ads4.jpg"></a>
+            </div>
+            <div class="slide fade1">
+                <a href=""><img src="ads5.jpg"></a>
+            </div>
+          </div>
+    </div>
+
+    <script>
+        let slideIndexCenter = 0;
+        let slidesCenter = document.getElementsByClassName("slide");
+        let slideTimerCenter;
+    
+        let slideIndexRight = 0;
+        let slidesRight = document.getElementsByClassName("slide fade1");
+        let slideTimerRight;
+    
+        // Function to show slides for both center and right
+        function showSlides(n, container) {
+            let slides = container === 'center' ? slidesCenter : slidesRight;
+    
+            if (container === 'center') {
+                if (n >= slides.length) slideIndexCenter = 0; // Loop back to first slide
+                if (n < 0) slideIndexCenter = slides.length - 1; // Loop to last slide
+                for (let i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                slides[slideIndexCenter].style.display = "block";
+            } else if (container === 'right') {
+                if (n >= slides.length) slideIndexRight = 0; // Loop back to first slide
+                if (n < 0) slideIndexRight = slides.length - 1; // Loop to last slide
+                for (let i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                slides[slideIndexRight].style.display = "block";
+            }
+        }
+    
+        // Function to handle next/prev for center slideshow (manual control)
+        function plusSlides(n, container) {
+            if (container === 'center') {
+                slideIndexCenter += n;
+                showSlides(slideIndexCenter, container);
+            }
+        }
+    
+        // Auto slideshow for right slides
+        function startAutoSlide(container) {
+            if (container === 'right') {
+                slideTimerRight = setInterval(() => {
+                    slideIndexRight++;
+                    showSlides(slideIndexRight, 'right');
+                }, 5000); // Change every 5 seconds for right
+            }
+        }
+    
+        window.onload = function() {
+            showSlides(slideIndexCenter, 'center');
+            showSlides(slideIndexRight, 'right');
+            startAutoSlide('right');  // Start auto-slideshow for right (automatic)
+        };
+    </script>
+          
+
+<div class="recipe-container">
+    <div class="recipe-card">
+        <img src="dinuguan.jpg" alt="Special Salad Chicken">
+        <h3>Dinuguan</h3>
+        <div class="rating">
+            ★★★★☆ <span>(6 Reviews)</span>
+        </div>
+        <p>20 min</p>
+        <a href="DISH 1.html">
+        <button>View Recipe</button>
+        </a>
+    </div>
+
+    <div class="recipe-card">
+        <img src="kare-kare.jpeg" alt="Noodle Chicken">
+        <h3>Kare-kare</h3>
+        <div class="rating">
+            ★★★★☆ <span>(6 Reviews)</span>
+        </div>
+        <p>20 min</p>
+        <a href="DISH 2.html">
+            <button>View Recipe</button>
+        </a>
+    </div>
+
+    <div class="recipe-card">
+        <img src="pinakbet.jpg" alt="Chicken with green veg">
+        <h3>Pinakbet</h3>
+        <div class="rating">
+            ★★★★☆ <span>(6 Reviews)</span>
+        </div>
+        <p>20 min</p>
+        <a href="DISH 3.html">
+            <button>View Recipe</button>
+            </a>
+    </div>
+
+    <div class="recipe-card">
+        <img src="lumpia.jpg" alt="Spicy Chicken Bowl">
+        <h3>Lumpia</h3>
+        <div class="rating">
+            ★★★★☆ <span>(6 Reviews)</span>
+        </div>
+        <p>20 min</p>
+        <a href="DISH 4.html">
+            <button>View Recipe</button>
+            </a>
+    </div>
+</div>
+
+<div class="recipe-container">
+    <div class="recipe-card">
+        <img src="balls2x.jpeg" alt="Special Salad Chicken">
+        <h3>Bola-Bola</h3>
+        <div class="rating">
+            ★★★★☆ <span>(6 Reviews)</span>
+        </div>
+        <p>20 min</p>
+        <a href="DISH 5.html">
+            <button>View Recipe</button>
+            </a>
+    </div>
+
+    <div class="recipe-card">
+        <img src="sinigang.jpg" alt="Noodle Chicken">
+        <h3>Sinigang</h3>
+        <div class="rating">
+            ★★★★☆ <span>(6 Reviews)</span>
+        </div>
+        <p>20 min</p>
+        <a href="DISH 6.html">
+            <button>View Recipe</button>
+            </a>
+    </div>
+
+    <div class="recipe-card">
+        <img src="kinilaw.jpeg" alt="Chicken with green veg">
+        <h3>Kinilaw</h3>
+        <div class="rating">
+            ★★★★☆ <span>(6 Reviews)</span>
+        </div>
+        <p>20 min</p>
+        <a href="DISH 7.html">
+            <button>View Recipe</button>
+            </a>
+    </div>
+
+    <div class="recipe-card">
+        <img src="sisig.jpeg" alt="Spicy Chicken Bowl">
+        <h3>Sisig</h3>
+        <div class="rating">
+            ★★★★☆ <span>(6 Reviews)</span>
+        </div>
+        <p>20 min</p>
+        <a href="DISH 8.html">
+            <button>View Recipe</button>
+            </a>
+    </div>
+</div>
+<footer>
+    <div class="footer-content">
+        <p>&copy; 2025 MARAHUYO. All rights reserved.</p>
+        <nav>
+            <a href="HOME.html" style="text-decoration: none;">Home</a> | 
+            <a href="CONTACT US.html" style="text-decoration: none;">Contact Us</a> | 
+            <a href="WEBSITE.html" style="text-decoration: none;">About Us</a>
+        </nav>
+    </div>
+</footer>
+</body>
+</html>
